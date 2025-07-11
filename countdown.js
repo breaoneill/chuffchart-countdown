@@ -9,7 +9,15 @@ function updateCountdown(targetDate) {
   const diff = targetDate - now;
 
   if (diff <= 0) {
-    document.getElementById('countdown').innerText = 'The event has started!';
+    const el = document.getElementById('countdown');
+    el.style.transform = 'scale(1.1)';
+    el.style.transition = 'transform 0.1s ease-in-out';
+    setTimeout(() => {
+      el.style.transform = 'scale(1)';
+    }, 100);
+    
+    el.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    
     return;
   }
 
