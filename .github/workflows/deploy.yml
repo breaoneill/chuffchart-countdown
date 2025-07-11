@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up SSH
@@ -18,15 +18,19 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H 134.209.25.249 >> ~/.ssh/known_hosts
+          HOST=$(echo "${{ secrets.DEPLOY_HOST }}" | tr -d '\r\n')
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
 
-
-      - name: List files for deployment (debug)
-        run: ls -lah
-
-      - name: Deploy via rsync
+      - name: Deploy site via rsync
         run: |
+          HOST=$(echo "${{ secrets.DEPLOY_HOST }}" | tr -d '\r\n')
           rsync -avz --delete \
             --exclude=".git/" \
             --exclude=".github/" \
-            ./ root@134.209.25.249:/var/www/chuffchart.org/html/countdown/
+            ./ deploy@"$HOST":/var/www/chuffchart.org/html/countdown/
+
+      - name: Verify deployment
+        run: |
+          sleep 5
+          curl -s https://chuffchart.org/countdown/ | grep -i "countdown" || (echo "Deployment verification failed" && exit 1)
+
