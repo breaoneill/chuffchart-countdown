@@ -30,5 +30,3 @@ jobs:
             --exclude=".git/" \
             --exclude=".github/" \
             ./ root@${{ secrets.DEPLOY_HOST }}:/var/www/chuffchart.org/html/countdown/
-# Deploy updated at Fri 11 Jul 2025 10:21:17 BST
-# Force rebuild Fri 11 Jul 2025 10:37:06 BST
