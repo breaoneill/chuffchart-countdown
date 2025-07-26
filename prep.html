@@ -10,24 +10,27 @@
       margin: 0;
       font-family: sans-serif;
       color: #fff;
-      background: linear-gradient(to bottom, #003366, #6699cc); /* fallback */
-    }
-
-    .background-gradient {
+      background: linear-gradient(to bottom, #003366, #6699cc);
+      display: flex;
+      justify-content: center;
       padding: 2rem;
     }
 
+    .background-gradient {
+      width: 100%;
+    }
+
     .content {
-      max-width: 700px;
-      margin: 2rem auto;
+      max-width: 800px;
+      width: 100%;
       padding: 2rem;
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 1rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: left;
     }
 
-    h1, h2 {
-      margin-bottom: 1rem;
+    h1, h2, p, li {
       text-align: left;
     }
 
@@ -42,7 +45,6 @@
 
     p {
       margin-bottom: 1rem;
-      text-align: left;
     }
   </style>
 </head>
@@ -54,5 +56,53 @@
       <section>
         <h2>🕰️ Fasting</h2>
         <ul>
-          <li>16:8 intermittent fasting (first meal ~12:30, last meal by 20:30
+          <li>16:8 intermittent fasting (first meal ~12:30, last meal by 20:30)</li>
+          <li>Hydration: herbal teas (rooibos, fennel), water – no calories outside eating window</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🥗 Bento Box Ideas</h2>
+        <ul>
+          <li>Kimchi + rice cakes + cashews or cheese</li>
+          <li>Celery & hummus (cold pack)</li>
+          <li>Protein: grilled chicken, boiled eggs, pancetta bites</li>
+          <li>Miso broth in flask (or hot stock cube)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🏃 Exercise Routine</h2>
+        <ul>
+          <li>Short walks before or after work</li>
+          <li>Stretching + light core each morning</li>
+          <li>Resistance bands or light dumbbells twice a week</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🧘 Recovery Prep</h2>
+        <ul>
+          <li>Low-residue meals 48 hours before surgery</li>
+          <li>Electrolytes and calm hydration the day before</li>
+          <li>Checklist: bag packed, paperwork ready, mindset steady</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🌶️ Kimchi Corner</h2>
+        <p>Your homemade kimchi is now over 2 weeks old and refrigerated. Use sparingly in bento, soups, or with rice cakes. Check for taste, fizz, and signs of over-fermenting.</p>
+        <ul>
+          <li>It's still alive, just like you.</li>
+          <li>Add to bento box as a flavour hit</li>
+          <li>Stir into broth or noodle bowls</li>
+          <li>Eat chilled on rice cakes with sliced boiled egg</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
