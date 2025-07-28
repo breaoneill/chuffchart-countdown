@@ -1,52 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chuff Chart – Prep Plan</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Surgery Diet & Exercise Plan</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: sans-serif;
       color: #fff;
       background: linear-gradient(to bottom, #003366, #6699cc);
-      padding: 4rem 2rem;
+      min-height: 100vh;
+      overflow-y: auto;
     }
-
     .background-gradient {
       max-width: 900px;
       margin: 0 auto;
+      padding: 5rem 2rem;
+      box-sizing: border-box;
     }
-
     .content {
-      padding: 2rem;
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 1rem;
+      padding: 2rem;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       text-align: left;
     }
-
-    h1, h2, h3, p, li {
-      text-align: left;
-    }
-
-    section {
-      margin-bottom: 2rem;
-    }
-
-    ul {
-      padding-left: 1.5rem;
-      line-height: 1.6;
-    }
-
-    ol {
-      padding-left: 1.5rem;
-      line-height: 1.6;
-    }
-
-    p {
-      margin-bottom: 1rem;
+    summary {
+      font-size: 1.25rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1.5rem;
     }
   </style>
 </head>
@@ -55,107 +40,95 @@
     <div class="content">
       <h1>Pre-Surgery Diet & Exercise Plan</h1>
 
-      <section>
-        <h2>🕰️ Fasting</h2>
-        <ul>
-          <li>16:8 intermittent fasting (first meal ~12:30, last meal by 20:30)</li>
-          <li>Hydration: plain water, herbal teas (rooibos, fennel), black tea or black coffee – no milk, sugar, or sweeteners</li>
-        </ul>
-      </section>
+      <details open>
+        <summary>🕒 Fasting</summary>
+        <p>16:8 intermittent fasting (first meal at ~12:30, last meal by 20:30)</p>
+        <p>Hydration: herbal teas (rooibos, fennel), water – no calories outside eating window</p>
+      </details>
 
-      <section>
-        <h2>🥗 Bento Box Ideas</h2>
+      <details open>
+        <summary>🥗 Bento Box Ideas</summary>
         <ul>
           <li>Kimchi + rice cakes + cashews or cheese</li>
           <li>Celery & hummus (cold pack)</li>
           <li>Protein: grilled chicken, boiled eggs, pancetta bites</li>
           <li>Miso broth in flask (or hot stock cube)</li>
         </ul>
-      </section>
+      </details>
 
-      <section>
-        <h2>🏃 Exercise Routine</h2>
+      <details open>
+        <summary>🏃 Exercise Routine</summary>
         <ul>
           <li>Short walks before or after work</li>
           <li>Stretching + light core each morning</li>
           <li>Resistance bands or light dumbbells twice a week</li>
         </ul>
-      </section>
+      </details>
 
-      <section>
-        <h2>🧘 Recovery Prep</h2>
+      <details open>
+        <summary>🧘 Recovery Prep</summary>
         <ul>
           <li>Low-residue meals 48 hours before surgery</li>
           <li>Electrolytes and calm hydration the day before</li>
           <li>Checklist: bag packed, paperwork ready, mindset steady</li>
         </ul>
-      </section>
+      </details>
 
-      <section>
-        <h2>🌶️ Kimchi Corner</h2>
-        <p>Your homemade kimchi is now over 2 weeks old and refrigerated. Use sparingly in bento, soups, or with rice cakes. Check for taste, fizz, and signs of over-fermenting.</p>
+      <details open>
+        <summary>🌶️ Kimchi Corner</summary>
+        <p>Your homemade kimchi is now over 2 weeks old and refrigerated. Check for taste, fizz, and signs of over-fermenting.</p>
         <ul>
           <li>It's still alive, just like you.</li>
           <li>Add to bento box as a flavour hit</li>
           <li>Stir into broth or noodle bowls</li>
           <li>Eat chilled on rice cakes with sliced boiled egg</li>
         </ul>
-      </section>
+      </details>
 
-      <section>
-        <h2>🥬 Sil’s Kimchi – October 2025 Edition</h2>
+      <details open>
+        <summary>🥬 Sil’s Kimchi – October 2025 Edition</summary>
         <p><strong>Yield:</strong> ~6kg</p>
-        <p><strong>Ferment time:</strong> 2–3 days room temp, then 4+ weeks in fridge</p>
-
-        <h3>🧂 Vegetables</h3>
+        <h4>Vegetables</h4>
         <ul>
-          <li>5 Napa cabbages – quartered, cored, chopped into 2–3" pieces</li>
-          <li>1 small celeriac – peeled and julienned</li>
+          <li>5 Napa cabbages – chopped into 2–3" pieces</li>
+          <li>1 small celeriac – julienned</li>
           <li>1 carrot – julienned</li>
-          <li>Spring onions – cut into 2–3" strips</li>
+          <li>Spring onions – 2–3" strips</li>
           <li>1 Conference pear – grated</li>
-          <li>1 medium onion – grated or blended</li>
+          <li>1 medium onion – grated</li>
         </ul>
-
-        <h3>🌶️ Spice Paste</h3>
+        <h4>Spice Paste</h4>
         <ul>
-          <li>1 to 1.5 cups gochugaru</li>
+          <li>1–1.5 cups gochugaru</li>
           <li>2–3 tbsp gochujang</li>
           <li>3 tbsp white miso</li>
-          <li>2–3 anchovy fillets (in oil), mashed finely</li>
-          <li>1–2 tsp dasida (beef stock powder)</li>
-          <li>½ cup fresh garlic, minced</li>
-          <li>¼ cup fresh ginger, minced</li>
-          <li>1 grated pear and 1 grated/blended onion</li>
-          <li>Optional: up to ½ cup water to loosen paste</li>
+          <li>2–3 anchovy fillets (mashed)</li>
+          <li>1–2 tsp dasida</li>
+          <li>½ cup garlic (minced)</li>
+          <li>¼ cup ginger (minced)</li>
+          <li>1 pear + 1 onion (grated/blended)</li>
         </ul>
-
-        <h3>🥣 Instructions</h3>
+        <h4>Instructions</h4>
         <ol>
-          <li>Salt cabbage, celeriac, and carrot with ½ cup coarse salt. Rest 6–8 hrs. Rinse & drain.</li>
-          <li>Mix all paste ingredients. Adjust spice to taste.</li>
+          <li>Salt cabbage, celeriac, carrot with ½ cup salt. Rest 6–8 hrs. Rinse & drain.</li>
+          <li>Mix paste. Adjust spice to taste.</li>
           <li>Massage paste into veg. Add spring onions. Coat well.</li>
-          <li>Pack into a clean plastic box. Press down firmly. Leave 2–3 cm space at top.</li>
+          <li>Pack into a clean plastic box. Press firmly. Leave 2–3 cm space at top.</li>
         </ol>
-
-        <h3>🕒 Fermentation</h3>
+        <h4>Fermentation</h4>
         <ul>
-          <li>Room temp: 2–3 days (loosely covered, burp daily)</li>
-          <li>Then refrigerate for 4+ weeks. Improves over time.</li>
+          <li>Room temp: 2–3 days (burp daily)</li>
+          <li>Refrigerate for 4+ weeks. Improves over time.</li>
         </ul>
-
-        <h3>🔧 Tips</h3>
+        <h4>Tips</h4>
         <ul>
-          <li>Ferments in a large plastic box with loose lid or weight</li>
-          <li>Use clean utensils. Expect bubbles and brine early on</li>
+          <li>Use a clean weight or loose lid</li>
+          <li>Expect bubbles and brine early</li>
           <li>Lasts 2–3 months refrigerated</li>
         </ul>
-      </section>
-
+      </details>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
 
