@@ -1,34 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Countdown to Launch</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>chuffchart.org</title>
+  <style>
+    :root {
+      --fg: #e2e8f0;  /* slate-200 */
+      --muted: #94a3b8; /* slate-400 */
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.09);
+      --accent: #38bdf8; /* sky-400 */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: linear-gradient(135deg, hsl(210, 60%, 12%), hsl(240, 50%, 16%));
+      transition: background 600ms ease;
+    }
+
+    .wrap { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,41,59,0.85));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 18px 16px; }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand .logo { width: 36px; height: 36px; border-radius: 10px; background: var(--card); border: 1px solid var(--border); display: grid; place-items: center; font-weight: 700; letter-spacing: 0.02em; }
+    .brand h1 { font-size: clamp(1.2rem, 2.6vw, 1.8rem); margin: 0; }
+    .muted { color: var(--muted); }
+
+    nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .navlink { text-decoration: none; color: var(--fg); padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); font-size: 0.95rem; }
+
+    .hero { padding: 24px 16px 8px; }
+    .hero h2 { font-size: clamp(1.6rem, 4vw, 2.6rem); margin: 0.2em 0 0.1em; }
+    .hero p { margin: 0.2em 0; text-align: justify; }
+
+    .countdown {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 6px;
+    }
+    .timebox { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px; text-align: center; }
+    .timebox .num { font-size: clamp(1.4rem, 5vw, 2.4rem); font-weight: 700; }
+    .timebox .lab { font-size: 0.9rem; color: var(--muted); }
+
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .btn { appearance: none; border: 1px solid var(--border); background: var(--card); color: var(--fg); padding: 10px 14px; border-radius: 12px; text-decoration: none; font-weight: 600; }
+    .btn.primary { border-color: rgba(56,189,248,0.45); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+    .grid { display: grid; gap: 12px; }
+    @media (min-width: 780px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+    .card h3 { margin-top: 0.4em; font-size: 1.1rem; }
+    .card p { text-align: justify; }
+
+    .footer { font-size: 0.9rem; color: var(--muted); }
+
+    .imgwrap { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: rgba(255,255,255,0.04); height: 220px; }
+    .imgwrap .overlay { position: absolute; inset: 0; backdrop-filter: blur(2px) saturate(110%); opacity: 0.15; }
+    .imgwrap .caption { position: absolute; bottom: 10px; right: 12px; font-size: 0.85rem; color: var(--muted); }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🚀 Countdown to Reveal</h1>
-    <div id="countdown" class="countdown-box">Loading...</div>
-    <p class="footer">chuffchart.org</p>
+  <div class="wrap">
+    <header>
+      <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap: wrap;">
+        <div class="brand">
+          <div class="logo">CC</div>
+          <div>
+            <h1>chuffchart</h1>
+            <div class="muted" style="font-size:0.92rem;">Days to do. Small steps. Big change.</div>
+          </div>
+        </div>
+        <nav>
+          <a class="navlink" href="prep.html">Prep</a>
+          <a class="navlink" href="fastloss.html">Fast loss plan</a>
+          <a class="navlink" href="#notes">Notes</a>
+          <a class="navlink" href="#links">Links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h2>Countdown to 15 October 2025 at 12:30</h2>
+        <p>This is the run in. Keep it simple and consistent. The goal is progress you can feel each week while staying kind to joints and energy. Use the fast loss plan if you want a sharper edge, or cruise with the prep page on steadier days.</p>
+        <div class="countdown" id="countdown">
+          <div class="timebox"><div class="num" id="d">0</div><div class="lab">days</div></div>
+          <div class="timebox"><div class="num" id="h">0</div><div class="lab">hours</div></div>
+          <div class="timebox"><div class="num" id="m">0</div><div class="lab">minutes</div></div>
+          <div class="timebox"><div class="num" id="s">0</div><div class="lab">seconds</div></div>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="fastloss.html">Open the fast loss plan</a>
+          <a class="btn" href="prep.html">Open prep</a>
+        </div>
+      </section>
+
+      <section class="grid grid-3" style="margin-top:16px;">
+        <article class="card">
+          <h3>Today</h3>
+          <p>Pick one: 60 to 90 min walk, 30 to 45 min bike or swim, or the strength menu from the plan. Eat two protein hits inside your window. Hydrate. Sleep on time.</p>
+        </article>
+        <article class="card">
+          <h3>Why this works</h3>
+          <p>Daily movement drives the change. Simple plates keep it controllable without counting. The countdown keeps focus on what matters now.</p>
+        </article>
+        <article class="card">
+          <h3>Visual marker</h3>
+          <div class="imgwrap" id="imgwrap">
+            <!-- Optional evolving image. Replace src below with your own image file if you want. -->
+            <img id="heroimg" alt="Evolving marker" src="images/marker.jpg" style="width:100%; height:100%; object-fit: cover; display:block;" />
+            <div class="overlay"></div>
+            <div class="caption">Tap image to cycle focus</div>
+          </div>
+        </article>
+      </section>
+
+      <section id="notes" class="card" style="margin-top:14px;">
+        <h3>Notes</h3>
+        <p class="muted">Keep this short and honest. A sentence on how you slept, what you did, and one thing to repeat tomorrow.</p>
+        <textarea id="notesBox" rows="6" style="width:100%; background: rgba(255,255,255,0.05); color: var(--fg); border: 1px solid var(--border); border-radius: 12px; padding: 10px;"></textarea>
+        <div style="display:flex; gap: 8px; margin-top: 10px;">
+          <button class="btn" id="saveNote">Save note</button>
+          <button class="btn" id="clearNote">Clear</button>
+        </div>
+      </section>
+
+      <section id="links" class="grid grid-3" style="margin-top:14px;">
+        <a class="card" href="fastloss.html" style="text-decoration:none; color:inherit;">
+          <h3>Fast loss plan</h3>
+          <p>Six week ramp with ticks that save in the browser. No calories. Just actions and outcomes.</p>
+        </a>
+        <a class="card" href="prep.html" style="text-decoration:none; color:inherit;">
+          <h3>Prep</h3>
+          <p>Steady habits, simple plates, and the daily structure that keeps things moving.</p>
+        </a>
+        <a class="card" href="kimchi.html" style="text-decoration:none; color:inherit;">
+          <h3>Kimchi corner</h3>
+          <p>Ferments, flavours, and the little sparks that make simple food sing.</p>
+        </a>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <p>chuffchart.org. Built for real life progress. No calorie spreadsheets.</p>
+    </footer>
   </div>
-  <script src="countdown.js"></script>
-  <a href="prep.html" style="
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 0.9em;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 12px;
-    border-radius: 8px;
-    backdrop-filter: blur(6px);
-    transition: background 0.3s ease;
-  " onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">
-    Pre-Op Toolkit →
-  </a>
+
+  <script>
+    // Target date: 15 Oct 2025 12:30 Europe/London
+    // We create a date that respects local time display but anchors to Europe/London wall clock by building from parts.
+    function londonTargetDate() {
+      // Build a Date for the user's browser but aligned to London time
+      // Use an ISO string with explicit offset for BST/GMT is messy, so compute using Date.UTC and then adjust by London offset on that date.
+      const parts = { y: 2025, m: 9, d: 15, hh: 12, mm: 30 }; // month 0-indexed
+      // Get the timezone offset for London on the target date by constructing a date in that zone via Intl API
+      const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour12: false,
+        year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'});
+      const z = new Date(Date.UTC(parts.y, parts.m, parts.d, parts.hh, parts.mm));
+      // Convert the formatted pieces back to a local Date by parsing, ensuring London wall time
+      // This approach creates a timestamp equivalent to London 12:30 on that date.
+      const str = fmt.format(z); // dd/mm/yyyy, hh:mm
+      const [datePart, timePart] = str.split(', ');
+      const [dd, mm, yyyy] = datePart.split('/').map(Number);
+      const [HH, MM] = timePart.split(':').map(Number);
+      return new Date(Date.UTC(yyyy, mm - 1, dd, HH, MM));
+    }
+
+    const target = londonTargetDate();
+
+    function updateCountdown() {
+      const now = new Date();
+      let ms = target - now;
+      if (ms < 0) ms = 0;
+      const sec = Math.floor(ms / 1000) % 60;
+      const min = Math.floor(ms / (1000*60)) % 60;
+      const hr  = Math.floor(ms / (1000*60*60)) % 24;
+      const day = Math.floor(ms / (1000*60*60*24));
+      document.getElementById('d').textContent = day;
+      document.getElementById('h').textContent = hr;
+      document.getElementById('m').textContent = min;
+      document.getElementById('s').textContent = sec;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Daily shifting background gradient based on day of year
+    function setDailyGradient() {
+      const now = new Date();
+      const start = new Date(now.getFullYear(), 0, 0);
+      const day = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+      const hue1 = (day * 3) % 360; // slow cycle
+      const hue2 = (hue1 + 40) % 360;
+      document.body.style.background = `linear-gradient(135deg, hsl(${hue1}, 55%, 14%), hsl(${hue2}, 45%, 18%))`;
+    }
+    setDailyGradient();
+
+    // Notes persistence
+    const KEY = 'cc_notes_v1';
+    const box = document.getElementById('notesBox');
+    const saved = localStorage.getItem(KEY);
+    if (saved) box.value = saved;
+    document.getElementById('saveNote').addEventListener('click', () => {
+      localStorage.setItem(KEY, box.value);
+    });
+    document.getElementById('clearNote').addEventListener('click', () => {
+      if (confirm('Clear notes on this device')) { localStorage.removeItem(KEY); box.value = ''; }
+    });
+
+    // Simple image focus cycle if you later swap in multiple images
+    const images = [ 'images/marker.jpg', 'images/marker2.jpg', 'images/marker3.jpg' ];
+    let idx = 0;
+    document.getElementById('imgwrap').addEventListener('click', () => {
+      idx = (idx + 1) % images.length;
+      document.getElementById('heroimg').src = images[idx];
+    });
+  </script>
 </body>
 </html>
 
