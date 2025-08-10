@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Six Week Fast-Loss Plan | chuffchart.org</title>
+  <style>
+    :root {
+      --bg1: #0f172a; /* slate-900 */
+      --bg2: #1e293b; /* slate-800 */
+      --fg: #e2e8f0;  /* slate-200 */
+      --muted: #94a3b8; /* slate-400 */
+      --card: rgba(255,255,255,0.06);
+      --accent: #38bdf8; /* sky-400 */
+      --good: #34d399; /* emerald-400 */
+      --warn: #fbbf24; /* amber-400 */
+      --bad: #f87171; /* red-400 */
+    }
+
+    html, body {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,41,59,0.85));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 10;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin: 0.6em 0 0.4em;
+    }
+    h1 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); }
+    h2 { font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--accent); }
+    h3 { font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
+
+    p, li { color: var(--fg); font-size: 1rem; line-height: 1.6; text-align: justify; }
+    .muted { color: var(--muted); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      margin: 14px 0;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    @media (min-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .kicker { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: var(--muted); }
+    .tag { display: inline-block; background: rgba(56,189,248,0.15); border: 1px solid rgba(56,189,248,0.35); color: var(--accent); padding: 2px 8px; border-radius: 999px; font-size: 0.8rem; margin-right: 8px; }
+
+    details { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px; }
+    details + details { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 600; }
+
+    .checklist { list-style: none; padding: 0; margin: 0; }
+    .checklist li { display: flex; align-items: center; gap: 10px; padding: 8px 6px; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+    .checklist li:last-child { border-bottom: 0; }
+    .checklist input[type="checkbox"] { width: 18px; height: 18px; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); font-size: 0.9rem;
+    }
+    .pill.good { border-color: rgba(52,211,153,0.5); }
+    .pill.warn { border-color: rgba(251,191,36,0.5); }
+
+    .footer { font-size: 0.9rem; color: var(--muted); }
+
+    .hr { height: 1px; background: rgba(255,255,255,0.12); border: 0; margin: 18px 0; }
+
+    .small { font-size: 0.92rem; }
+
+    .flex { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .right { text-align: right; }
+
+    .btn {
+      appearance: none; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06); color: var(--fg); padding: 8px 12px; border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    .notice { border-left: 4px solid var(--accent); padding: 12px 14px; background: rgba(56,189,248,0.08); border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="container">
+        <div class="flex" style="justify-content: space-between;">
+          <div>
+            <div class="kicker">chuffchart</div>
+            <h1>Six Week Fast-Loss Plan</h1>
+            <div class="muted small">Designed for a 16:8 fasting window. No calorie counting. Results tracked by actions and outcomes.</div>
+          </div>
+          <div class="right">
+            <button class="btn" id="resetBtn" title="Clear all saved ticks">Reset ticks</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="card">
+        <p><span class="tag">Goal</span> Drop 6 to 10 kg in 6 weeks while protecting energy, joints, and recovery for surgery. Focus on consistent movement, protein at each meal, and sleep. No weighing of food. No macro spreadsheets.</p>
+        <div class="grid grid-3">
+          <div class="pill good">Daily walking 60 to 90 min</div>
+          <div class="pill good">Strength 2 to 3 days weekly</div>
+          <div class="pill good">Mobility 10 min daily</div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h2>How this works without calories</h2>
+          <ul>
+            <li>Keep a 16:8 window. Black tea or coffee during the fast is fine.</li>
+            <li>Anchor meals on protein. A simple rule: two palm-size portions of protein per day. Example sources: eggs, Greek yogurt, fish, chicken, tofu, beans.</li>
+            <li>Fill the plate with veg first. Add a fist of whole carbs only after training or long walks.</li>
+            <li>Healthy fats in thumb-size servings. Olive oil, nuts, seeds, avocado.</li>
+            <li>Hydrate. Start the day with water and sip through the day.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Safety first</h2>
+          <p class="muted small">If anything feels sharp or odd, back off. Check with your GP if you have chest pain, dizziness, new swelling, or anything that worries you. Warm up for 5 to 8 minutes before sessions.</p>
+          <ul>
+            <li>Use the talk test. You should be able to speak in short sentences during steady cardio.</li>
+            <li>Keep strength work smooth and slow. No straining. Stop 2 reps before failure.</li>
+            <li>Prioritise sleep. Aim for a steady bedtime and a cool dark room.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Weekly structure</h2>
+        <p>Each week follows the same scaffold. Intensity edges up by time or pace. Swap activities if joints feel cranky.</p>
+        <div class="grid grid-3">
+          <div>
+            <h3>Cardio menu</h3>
+            <ul>
+              <li>Brisk walk outdoors or treadmill</li>
+              <li>Stationary bike or road cycling</li>
+              <li>Swimming or water aerobics</li>
+              <li>Elliptical trainer</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Strength menu</h3>
+            <ul>
+              <li>Chair sit-to-stand 3 sets of 8 to 12</li>
+              <li>Wall push-up or incline push-up 3 x 8 to 12</li>
+              <li>Band row 3 x 10 to 15</li>
+              <li>Step-up 3 x 8 each leg</li>
+              <li>Band lateral walk 2 x 12 each way</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Mobility core</h3>
+            <ul>
+              <li>Cat-cow and thoracic openers 2 min</li>
+              <li>Hip flexor stretch 1 min each side</li>
+              <li>Ankle rocks and gentle calf stretch 2 min</li>
+              <li>Dead bug or bird-dog 2 x 6 slow reps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Daily template</h2>
+        <ul class="checklist" data-scope="template">
+          <li><input type="checkbox"> 60 to 90 min total walking or cardio. Split is fine, for example 2 x 30.</li>
+          <li><input type="checkbox"> Protein with first and last meal. Add veg before starch.</li>
+          <li><input type="checkbox"> Mobility 10 min.</li>
+          <li><input type="checkbox"> Stop eating 2 to 3 hours before bed.</li>
+          <li><input type="checkbox"> Lights out on time.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Progress targets by week</h2>
+        <p class="muted small">RPE is rate of perceived effort on a 1 to 10 scale. Keep most work at 5 to 6. Short bursts can touch 7 if you recover well.</p>
+        <details open>
+          <summary>Week 1</summary>
+          <ul>
+            <li>Cardio: 60 min per day at RPE 5. Optional extra 15 min easy in the evening.</li>
+            <li>Strength: 2 sessions from the menu. One set of each exercise to learn the groove.</li>
+            <li>Mobility: 10 min daily.</li>
+            <li>Food: Protein at both meals. Veg covers half the plate. Starch only on training days.</li>
+            <li>Outcome check: Waist measurement and morning weight on day 1 and day 7.</li>
+          </ul>
+          <ul class="checklist" data-scope="w1">
+            <li><input type="checkbox"> Done all 7 days of cardio</li>
+            <li><input type="checkbox"> Done 2 strength sessions</li>
+            <li><input type="checkbox"> Mobility every day</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Week 2</summary>
+          <ul>
+            <li>Cardio: 70 min per day at RPE 5 to 6. One day can be 90 min easy.</li>
+            <li>Strength: 2 to 3 sessions. Two sets for each exercise.</li>
+            <li>Mobility: 10 to 12 min daily.</li>
+            <li>Food: Add fruit with first meal. Keep oils and nuts to small handfuls.</li>
+            <li>Outcome check: Morning weight on day 14. Note energy and sleep.</li>
+          </ul>
+          <ul class="checklist" data-scope="w2">
+            <li><input type="checkbox"> 6 to 7 cardio days</li>
+            <li><input type="checkbox"> 2 to 3 strength sessions</li>
+            <li><input type="checkbox"> Mobility every day</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Week 3</summary>
+          <ul>
+            <li>Cardio: 70 to 80 min per day. Add 3 to 5 gentle surges of 60 seconds to RPE 7 during one session, separated by easy pace.</li>
+            <li>Strength: 3 sessions. Two sets for lower body moves, one for upper if joints feel tender.</li>
+            <li>Mobility: 12 min daily.</li>
+            <li>Food: One plate per meal. No seconds. Keep starch to a fist size on strength days only.</li>
+            <li>Outcome check: Waist and weight on day 21.</li>
+          </ul>
+          <ul class="checklist" data-scope="w3">
+            <li><input type="checkbox"> 6 to 7 cardio days</li>
+            <li><input type="checkbox"> 3 strength sessions</li>
+            <li><input type="checkbox"> Mobility every day</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Week 4</summary>
+          <ul>
+            <li>Cardio: 80 min per day. One long day at 95 to 105 min easy if you recover well.</li>
+            <li>Strength: 2 sessions lighter to freshen up. One set each at smooth tempo.</li>
+            <li>Mobility: 12 to 15 min daily.</li>
+            <li>Food: Keep the same plate rules. Add a big salad at one meal.</li>
+            <li>Outcome check: Morning weight on day 28. If progress stalled, trim snacks inside the feeding window.</li>
+          </ul>
+          <ul class="checklist" data-scope="w4">
+            <li><input type="checkbox"> 6 to 7 cardio days</li>
+            <li><input type="checkbox"> 2 strength sessions</li>
+            <li><input type="checkbox"> Mobility every day</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Week 5</summary>
+          <ul>
+            <li>Cardio: 80 to 90 min per day. Add 2 sessions this week with 6 x 60 second surges to RPE 7, full recovery between.</li>
+            <li>Strength: 3 sessions light to moderate. Two sets each. Stop 2 reps short of effort.</li>
+            <li>Mobility: 15 min daily.</li>
+            <li>Food: Protein first. Starch only after training or the long walk.</li>
+            <li>Outcome check: Waist and weight on day 35.</li>
+          </ul>
+          <ul class="checklist" data-scope="w5">
+            <li><input type="checkbox"> 6 to 7 cardio days</li>
+            <li><input type="checkbox"> 3 strength sessions</li>
+            <li><input type="checkbox"> Mobility every day</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Week 6</summary>
+          <ul>
+            <li>Cardio: 70 to 80 min per day. Keep it smooth. One optional fun day of swimming or cycling.</li>
+            <li>Strength: 2 sessions very easy. One set each only.</li>
+            <li>Mobility: 15 min daily plus an easy 20 min evening walk for sleep quality.</li>
+            <li>Food: Keep plates simple. Avoid refined snacks. Hold the line through the finish.</li>
+            <li>Outcome check: Final waist and weight on day 42. Take a steady day after.</li>
+          </ul>
+          <ul class="checklist" data-scope="w6">
+            <li><input type="checkbox"> 6 to 7 cardio days</li>
+            <li><input type="checkbox"> 2 strength sessions</li>
+            <li><input type="checkbox"> Mobility every day</li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h2>Food examples</h2>
+          <ul>
+            <li>First meal options: Greek yogurt with berries and nuts. Omelette with spinach and tomatoes. Tuna salad bowl with olive oil and lemon.</li>
+            <li>Second meal options: Salmon with roasted veg. Chicken thigh traybake. Stir fry tofu with broccoli and edamame. Bean and veg chili.</li>
+            <li>Carb add-ons only after training or long walks: boiled new potatoes, brown rice, oats, wholemeal toast.</li>
+            <li>Flavour friends: kimchi corner, pickles, mustard, herbs, citrus, chili.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Recovery and joint care</h2>
+          <ul>
+            <li>Warm up: 5 to 8 min easy walk or cycle before any session.</li>
+            <li>Post work: 5 min of gentle stretching. Breathe through the nose and slow things down.</li>
+            <li>If something aches next day, swap to pool or bike, not the sofa.</li>
+            <li>Use shoes that feel springy and kind to your feet.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Track results without counting</h2>
+        <ul>
+          <li>Morning weight once per week only. Same day and same routine.</li>
+          <li>Waist at the navel once per week.</li>
+          <li>Tick off sessions below. The ticks save in your browser.</li>
+          <li>Note sleep quality and mood in a small notebook. Keep it simple.</li>
+        </ul>
+        <hr class="hr" />
+        <details>
+          <summary>Session tick boxes</summary>
+          <div class="grid grid-3 small" id="ticks">
+            <!-- Generated by script -->
+          </div>
+        </details>
+      </div>
+
+      <div class="notice">
+        This plan is aggressive. If energy crashes or sleep gets patchy, trim intensity for a couple of days and keep the walks easy. Consistency wins.
+      </div>
+
+      <div class="card">
+        <h2>What happens after six weeks</h2>
+        <p>Hold a light deload week. Keep daily walks, keep mobility, and do one easy full body strength session. Keep the plate rules. Then either repeat weeks 3 to 6 or move to a steady maintenance rhythm that fits the run in to surgery.</p>
+      </div>
+    </main>
+
+    <footer class="container footer">
+      <p>Made for chuffchart.org. No calorie counting. Just actions and outcomes.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Persist checklist ticks
+    const KEY_PREFIX = "fastloss_";
+
+    function saveScope(scope) {
+      const list = document.querySelector(`ul.checklist[data-scope="${scope}"]`);
+      if (!list) return;
+      const inputs = list.querySelectorAll('input[type="checkbox"]');
+      const vals = Array.from(inputs).map(i => i.checked ? 1 : 0);
+      localStorage.setItem(KEY_PREFIX + scope, JSON.stringify(vals));
+    }
+
+    function loadScope(scope) {
+      const list = document.querySelector(`ul.checklist[data-scope="${scope}"]`);
+      if (!list) return;
+      const raw = localStorage.getItem(KEY_PREFIX + scope);
+      if (!raw) return;
+      const vals = JSON.parse(raw);
+      const inputs = list.querySelectorAll('input[type="checkbox"]');
+      inputs.forEach((i, idx) => i.checked = !!vals[idx]);
+    }
+
+    function bindScope(scope) {
+      const list = document.querySelector(`ul.checklist[data-scope="${scope}"]`);
+      if (!list) return;
+      list.addEventListener('change', () => saveScope(scope));
+    }
+
+    const scopes = ["template","w1","w2","w3","w4","w5","w6"];
+    scopes.forEach(loadScope);
+    scopes.forEach(bindScope);
+
+    // Reset button
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (!confirm('Clear all ticks for this plan on this device')) return;
+      scopes.forEach(s => localStorage.removeItem(KEY_PREFIX + s));
+      location.reload();
+    });
+
+    // Generate 6 weeks x 7 days x categories tick grid
+    const ticks = document.getElementById('ticks');
+    const cats = ["Cardio", "Strength", "Mobility"];
+    for (let w = 1; w <= 6; w++) {
+      const col = document.createElement('div');
+      col.className = 'card';
+      const h = document.createElement('h3');
+      h.textContent = `Week ${w}`;
+      col.appendChild(h);
+
+      for (let d = 1; d <= 7; d++) {
+        const day = document.createElement('details');
+        const sum = document.createElement('summary');
+        sum.textContent = `Day ${d}`;
+        day.appendChild(sum);
+
+        const ul = document.createElement('ul');
+        ul.className = 'checklist';
+        cats.forEach(cat => {
+          const li = document.createElement('li');
+          const cb = document.createElement('input');
+          cb.type = 'checkbox';
+          const key = `${KEY_PREFIX}w${w}d${d}_${cat}`;
+          cb.checked = localStorage.getItem(key) === '1';
+          cb.addEventListener('change', () => {
+            localStorage.setItem(key, cb.checked ? '1' : '0');
+          });
+          li.appendChild(cb);
+          li.appendChild(document.createTextNode(` ${cat} done`));
+          ul.appendChild(li);
+        });
+        day.appendChild(ul);
+        col.appendChild(day);
+      }
+      ticks.appendChild(col);
+    }
+  </script>
+</body>
+</html>
+
